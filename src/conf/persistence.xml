@@ -3,7 +3,12 @@
   <persistence-unit name="CA2PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.InfoEntity</class>
+<<<<<<< Updated upstream
     <class>entity.Phone</class>
+=======
+    <class>entity.Address</class>
+    <class>entity.CityInfo</class>
+>>>>>>> Stashed changes
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/person?zeroDateTimeBehavior=convertToNull"/>

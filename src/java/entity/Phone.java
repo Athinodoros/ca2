@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,42 +18,65 @@ import javax.persistence.Id;
  */
 @Entity
 public class Phone implements Serializable {
-    private static final long serialVersionUID = 1L;
+//    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int phoneNumber;
+    private String description;
+    @ManyToOne
+    private InfoEntity infoEntity;
 
-    public Integer getId() {
+    public Phone()
+    {
+    }
+
+    public Phone(int phoneNumber, String description, InfoEntity infoEntity)
+    {
+        this.phoneNumber = phoneNumber;
+        this.description = description;
+        this.infoEntity = infoEntity;
+    }
+
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public int getPhoneNumber()
+    {
+        return phoneNumber;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Phone)) {
-            return false;
-        }
-        Phone other = (Phone) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setPhoneNumber(int phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return "entity.Phone[ id=" + id + " ]";
+    public String getDescription()
+    {
+        return description;
     }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public InfoEntity getInfoEntity()
+    {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity)
+    {
+        this.infoEntity = infoEntity;
+    }
+
     
 }

@@ -14,10 +14,7 @@ import javax.persistence.Persistence;
  */
 public class Test {
     public static void main(String[] args) {
-        
-        
-        
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
-        Persistence.generateSchema("CA2PU",null);
+        Persistence.generateSchema("CA2TEST",null);
     }
 }

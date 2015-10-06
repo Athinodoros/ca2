@@ -17,7 +17,7 @@ public class Test {
         
         
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
         Persistence.generateSchema("CA2PU",null);
     }
 }

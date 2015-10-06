@@ -24,7 +24,7 @@ public class DeploymentConfiguration implements ServletContextListener {
         Map<String, String> env = System.getenv();
         //If we are running in the OPENSHIFT environment change the pu-name
         if (env.keySet().contains("OPENSHIFT_MYSQL_DB_HOST")) {
-            PU_NAME = "pu_OPENSHIFT";
+            PU_NAME = "pu_development";
         }
     }
     @Override

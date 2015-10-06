@@ -35,7 +35,6 @@ nbbuild/
 dist/
 nbdist/
 nbactions.xml
-src/comf/persistence.xml
 nb-configuration.xml
 .nb-gradle/
 

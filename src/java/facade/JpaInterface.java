@@ -1,6 +1,8 @@
 
 package facade;
 
+import entity.Company;
+import entity.Person;
 import java.util.List;
 
 /**

@@ -5,6 +5,8 @@
  */
 package facade;
 
+import entity.Company;
+import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,15 +29,7 @@ public class Facade implements JpaInterface{
         return "";
     };
 
-    @Override
-    public String createPerson(Person pers) {
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        
-        em.getTransaction().commit();
-        return "";
-    }
+    
 
     @Override
     public String deletePerson(int id) {
@@ -64,7 +58,7 @@ public class Facade implements JpaInterface{
         em.getTransaction().begin();
         
         em.getTransaction().commit();
-        return "";
+        return new Person();
     }
 
     @Override
@@ -74,7 +68,7 @@ public class Facade implements JpaInterface{
         em.getTransaction().begin();
         
         em.getTransaction().commit();
-        return "";
+        return null ;
     }
 
     @Override
@@ -114,7 +108,7 @@ public class Facade implements JpaInterface{
         em.getTransaction().begin();
         
         em.getTransaction().commit();
-        return "";
+        return new Company();
     }
 
     @Override
@@ -124,7 +118,12 @@ public class Facade implements JpaInterface{
         em.getTransaction().begin();
         
         em.getTransaction().commit();
-        return "";
+        return null;
+    }
+
+    @Override
+    public String createPerson(Person pers) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     

@@ -3,26 +3,26 @@
   <persistence-unit name="CA2PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.InfoEntity</class>
-<<<<<<< Updated upstream
     <class>entity.Phone</class>
-=======
     <class>entity.Address</class>
     <class>entity.CityInfo</class>
->>>>>>> Stashed changes
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/person?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.user" value="fandul"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ca2?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value=""/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="metallica4life"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="eclipselink.canonicalmodel.subpackage" value="deploy"/>
     </properties>
   </persistence-unit>
-  
   <persistence-unit name="pu_OPENSHIFT" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entity.Person</class>
+    <class>entity.Address</class>
+    <class>entity.CityInfo</class>
+    <class>entity.InfoEntity</class>
+    <class>entity.Phone</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <non-jta-data-source>java:/comp/env/jdbc/MySQLDS</non-jta-data-source>
     <properties>
@@ -32,8 +32,7 @@
       <property name="javax.persistence.jdbc.password" value="DrB9CGmCsTKf"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="eclipselink.canonicalmodel.subpackage" value="production"/>
-
     </properties>
   </persistence-unit>
-
+  <property name="eclipselink.canonicalmodel.subpackage" value="production"/>
 </persistence>

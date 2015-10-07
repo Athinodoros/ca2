@@ -22,9 +22,9 @@ public class Test {
         //Persistence.generateSchema("CA2TEST",null);
         
         Address adress = new Address("novembervej 13", "nice place", null);
-        Person p = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress,null);
-        Person p2 = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress,null);
-        Person p3 = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress,null);
+        Person p = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress);
+        Person p2 = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress);
+        Person p3 = new Person( "Nos", "Sgouros", "athino@hotmail.com", adress);
         
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2TEST");

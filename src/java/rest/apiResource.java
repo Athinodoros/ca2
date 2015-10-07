@@ -7,15 +7,21 @@ package rest;
 
 import com.google.gson.Gson;
 import entity.Person;
+import facade.JSONconverter;
 import facade.PersonFacade;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import org.glassfish.jersey.server.JSONP;
 
 /**
  * REST Web Service
@@ -24,7 +30,7 @@ import javax.ws.rs.core.Context;
  */
 @Path("person")
 public class apiResource {
-    PersonFacade facade = new PersonFacade();
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("CA2TEST"));
     Gson gson = new Gson();
     
     @Context
@@ -53,8 +59,29 @@ public class apiResource {
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */
-    @PUT
+    @POST
+    @Path("add")
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes("application/json")
-    public void putJson(String content) {
+    public String postPerson(String content) {
+        
+        return JSONconverter.getJSONFromPerson(facade.createPerson(JSONconverter.getPersonFromJSON(content)));
+        //return   content;
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes("application/json")
+    public String putPerson(String content) {
+        
+        return JSONconverter.getJSONFromPerson(facade.updatePerson(JSONconverter.getPersonFromJSON(content)));
+        //return   content;
+    }
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes("application/json")
+    public String deletePerson(String content) {
+        
+        return JSONconverter.getJSONFromPerson(facade.deletePerson(JSONconverter.getPersonFromJSON(content)));
+        //return   content;
     }
 }

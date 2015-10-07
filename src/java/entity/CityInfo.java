@@ -30,9 +30,9 @@ public class CityInfo implements Serializable
     {
     }
 
-    public CityInfo(int zipCode, String city)
+    public CityInfo(int zipcodeCode, String city)
     {
-        this.zipCode = zipCode;
+        this.zipCode = zipcodeCode;
         this.city = city;
     }
     
@@ -51,14 +51,14 @@ public class CityInfo implements Serializable
         this.id = id;
     }
 
-    public int getZipCode()
+    public int getzipcodeCode()
     {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode)
+    public void setzipcodeCode(int zipcodeCode)
     {
-        this.zipCode = zipCode;
+        this.zipCode = zipcodeCode;
     }
 
     public String getCity()

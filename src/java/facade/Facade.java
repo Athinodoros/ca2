@@ -20,16 +20,15 @@ public class Facade implements JpaInterface{
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
     
-    public String addPerson(String person) {
+    @Override
+    public Person createPerson(Person pers) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        
+        em.persist(pers);
         em.getTransaction().commit();
-        return "";
-    };
-
-    
+        return pers;
+    }
 
     @Override
     public String deletePerson(int id) {
@@ -72,13 +71,13 @@ public class Facade implements JpaInterface{
     }
 
     @Override
-    public String createCompany(Company comp) {
+    public Company createCompany(Company comp) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        
+        em.persist(comp);
         em.getTransaction().commit();
-        return "";
+        return comp;
     }
 
     @Override
@@ -121,10 +120,6 @@ public class Facade implements JpaInterface{
         return null;
     }
 
-    @Override
-    public String createPerson(Person pers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
    
     
 }

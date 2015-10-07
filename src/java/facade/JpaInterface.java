@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface JpaInterface {
     
-    public String createPerson(Person pers);
+    public Person createPerson(Person pers);
    
     public String deletePerson(int id);
     
@@ -21,7 +21,7 @@ public interface JpaInterface {
    
     public List<Person> getPersons ();
     
-    public String createCompany(Company comp);
+    public Company createCompany(Company comp);
    
     public String deleteCompany(int cvr);
     

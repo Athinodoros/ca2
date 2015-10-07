@@ -74,3 +74,5 @@ $RECYCLE.BIN/
 hs_err_pid*
 
 src/conf/persistence.xml
+src/conf/persistence.xml
+web/META-INF/context.xml

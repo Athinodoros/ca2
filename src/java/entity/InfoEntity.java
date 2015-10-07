@@ -24,6 +24,7 @@ public abstract class InfoEntity implements Serializable {
     private Long id;
 
     private String email;
+    //@JoinTable(name = "INFOENTITY_PHONE")
     @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList();
     @ManyToOne(cascade = CascadeType.ALL)
@@ -33,15 +34,15 @@ public abstract class InfoEntity implements Serializable {
     {
     }
 
-    public InfoEntity(String email, Address address, List<Phone> phones)
+    public InfoEntity(String email, Address address)
     {
-        this.phones = phones;
         this.email = email;
         this.address = address;
     }
 
     public void addPhoneToEntity(Phone phone)
     {
+        phone.setInfoEntity(this);
         phones.add(phone);
     }
 

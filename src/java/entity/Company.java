@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -24,9 +23,9 @@ public class Company extends InfoEntity implements Serializable
     {
     }
 
-    public Company(String name, String description, int cvr, int numOfEmployees, String marketValue, String email, Address address, List<Phone> phones)
+    public Company(String name, String description, int cvr, int numOfEmployees, String marketValue, String email, Address address)
     {
-        super(email, address, phones);
+        super(email, address);
         this.name = name;
         this.description = description;
         this.cvr = cvr;

@@ -6,7 +6,6 @@ import entity.CityInfo;
 import entity.Company;
 import entity.Phone;
 import facade.CompanyFacade;
-import java.util.ArrayList;
 import javax.persistence.Persistence;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,17 +25,16 @@ public class JUnitTest {
     @Test
     public void testCreateCompany()
     {
+        Phone p1 = new Phone(23728394, "Freddy's Phone");
+        Phone p2 = new Phone(20962783, "Line's Phone");
+        Phone p3 = new Phone(48484848, "Taxi Nordsjl");
         Company c = new Company("testCompany", "testDescription", 12345678, 20, 
                                 "testMarketValue", "test@mail.com", new Address("testStreet", 
-                                "testAdditionalInfo", new CityInfo(9999, "testCity")), new ArrayList(){
-
-            @Override
-            public boolean add(Object e)
-            {
-                return super.add(new Phone(23728394, "testDescription")); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        Company cReturned = cf.createCompany(c);
-        Assert.assertEquals("Something went wrong:", c, cReturned);
+                                "testAdditionalInfo", new CityInfo(9999, "testCity")));
+        c.addPhoneToEntity(p1);
+        c.addPhoneToEntity(p2);
+        c.addPhoneToEntity(p3);
+        cf.createCompany(c);
+        Assert.assertNotNull(c.getId());
     }
 }

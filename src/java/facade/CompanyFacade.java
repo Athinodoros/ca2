@@ -38,7 +38,7 @@ public class CompanyFacade implements CompanyInterface
     }
 
     @Override
-    public Company getCompany(int cvr)
+    public Company getCompany(long cvr)
     {
         EntityManager em = getEntityManager();
         try {

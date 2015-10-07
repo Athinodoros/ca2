@@ -7,12 +7,15 @@ package rest;
 
 import com.google.gson.Gson;
 import entity.Person;
+import facade.JSONconverter;
 import facade.PersonFacade;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.Context;
@@ -24,9 +27,10 @@ import javax.ws.rs.core.Context;
  */
 @Path("person")
 public class apiResource {
+
     PersonFacade facade = new PersonFacade();
     Gson gson = new Gson();
-    
+
     @Context
     private UriInfo context;
 
@@ -38,23 +42,44 @@ public class apiResource {
 
     /**
      * Retrieves representation of an instance of rest.apiResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Path("{id}")
     @Produces("application/json")
-    public String getPerson(@PathParam ("id") Long perid) {
+    public String getPerson(@PathParam("id") Long perid) {
         //TODO return proper representation object
-        return  gson.toJson(facade.getPerson(perid), Person.class);
+        return gson.toJson(facade.getPerson(perid), Person.class);
     }
 
     /**
      * PUT method for updating or creating an instance of apiResource
+     *
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public String postPerson(String content) {
+
+        return JSONconverter.getJSONFromPerson(facade.createPerson(JSONconverter.getPersonFromJSON(content)));
+    }
+
     @PUT
     @Consumes("application/json")
-    public void putJson(String content) {
+    @Produces("application/json")
+    public String putJson(String content) {
+
+        return JSONconverter.getJSONFromPerson(facade.updatePerson(JSONconverter.getPersonFromJSON(content)));
+    }
+
+    @DELETE
+    @Consumes("application/json")
+    @Produces("application/json")
+    public String deletePerson(String content) {
+
+        return JSONconverter.getJSONFromPerson(facade.updatePerson(JSONconverter.getPersonFromJSON(content)));
     }
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
  *
  * @author favl
  */
+//@NamedQueries({
+//    @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM InfoEntity c WHERE c.cvr = :cvr")})
 @Entity
 public class Company extends InfoEntity implements Serializable
 {

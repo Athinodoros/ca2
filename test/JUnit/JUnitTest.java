@@ -37,4 +37,11 @@ public class JUnitTest {
         cf.createCompany(c);
         Assert.assertNotNull(c.getId());
     }
+    
+//    @Test
+//    public void testGetCompany()
+//    {
+//        List<String> c = cf.getCompanyTest(23355673);
+//        System.out.println("what aeiohfskz" + c.toString());
+//    }
 }

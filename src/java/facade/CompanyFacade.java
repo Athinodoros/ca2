@@ -4,6 +4,7 @@ import entity.Company;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -45,6 +46,18 @@ public class CompanyFacade implements CompanyInterface
             Company c = em.find(Company.class, cvr);
             //insert exception handling here
             return c;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<String> getCompanyTest(int cvr)
+    {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("Company.findByCvr");
+            q.setParameter("cvr", cvr);
+            return q.getResultList();
         } finally {
             em.close();
         }

@@ -52,12 +52,12 @@ public class CityInfo implements Serializable
         this.id = id;
     }
 
-    public int getzipcodeCode()
+    public int getzipCode()
     {
         return zipCode;
     }
 
-    public void setzipcodeCode(int zipcodeCode)
+    public void setzipCode(int zipcodeCode)
     {
         this.zipCode = zipcodeCode;
     }

@@ -17,7 +17,7 @@ import javax.servlet.ServletContextListener;
 
 public class DeploymentConfiguration implements ServletContextListener {
 
-    public static String PU_NAME = "CA2PU"; //USE the RIGHT name here
+    public static String PU_NAME = "CA2TEST"; //USE the RIGHT name here
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

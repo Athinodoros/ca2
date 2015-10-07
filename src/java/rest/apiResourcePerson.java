@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import entity.Person;
 import facade.JSONconverter;
 import facade.PersonFacade;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -28,7 +29,7 @@ import javax.ws.rs.core.Context;
 @Path("person")
 public class apiResourcePerson {
 
-    PersonFacade facade = new PersonFacade();
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME));
     Gson gson = new Gson();
 
     @Context
@@ -51,6 +52,13 @@ public class apiResourcePerson {
     public String getPerson(@PathParam("id") Long perid) {
         //TODO return proper representation object
         return gson.toJson(facade.getPerson(perid), Person.class);
+    }
+    @GET
+    @Path("all")
+    @Produces("application/json")
+    public String getAllPerson(@PathParam("id") Long perid) {
+        //TODO return proper representation object
+        return gson.toJson(facade.getPersons());
     }
 
     /**

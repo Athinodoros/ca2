@@ -12,7 +12,13 @@ import javax.persistence.Persistence;
  */
 public class PersonFacade implements PersonInterface {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
+    EntityManagerFactory emf ;
+
+    public PersonFacade(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+    
+    
 
     @Override
     public Person createPerson(Person p)    {

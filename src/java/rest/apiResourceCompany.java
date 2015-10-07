@@ -48,9 +48,16 @@ public class apiResourceCompany {
     @GET
     @Path("{id}")
     @Produces("application/json")
-    public String getPerson(@PathParam("id") Long perid) {
+    public String getCompany(@PathParam("id") Long perid) {
         //TODO return proper representation object
         return gson.toJson(facade.getCompany(perid), Person.class);
+    }
+    @GET
+    @Path("all")
+    @Produces("application/json")
+    public String getCompanies(@PathParam("id") Long perid) {
+        //TODO return proper representation object
+        return gson.toJson(facade.getCompanies());
     }
 
     /**
@@ -62,7 +69,7 @@ public class apiResourceCompany {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public String postPerson(String content) {
+    public String postCompany(String content) {
 
         return JSONconverter.getJSONFromCompany(facade.createCompany(JSONconverter.getCompanyFromJSON(content)));
     }
@@ -70,7 +77,7 @@ public class apiResourceCompany {
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    public String putJson(String content) {
+    public String putCompany(String content) {
 
         return JSONconverter.getJSONFromCompany(facade.updateCompany(JSONconverter.getCompanyFromJSON(content)));
     }
@@ -78,7 +85,7 @@ public class apiResourceCompany {
     @DELETE
     @Consumes("application/json")
     @Produces("application/json")
-    public String deletePerson(String content) {
+    public String deleteCompany(String content) {
 
         return JSONconverter.getJSONFromCompany(facade.deleteCompany(JSONconverter.getCompanyFromJSON(content)));
     }

@@ -15,7 +15,7 @@ public class PersonFacade implements PersonInterface {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
 
     @Override
-    public Person createPerson(Person p) {
+    public Person createPerson(Person p)    {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();

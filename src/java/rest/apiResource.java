@@ -5,7 +5,9 @@
  */
 package rest;
 
-import javax.ws.rs.core.Context;
+import com.google.gson.Gson;
+import entity.Person;
+import facade.PersonFacade;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,6 +15,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.Context;
 
 /**
  * REST Web Service
@@ -21,7 +24,9 @@ import javax.ws.rs.PUT;
  */
 @Path("person")
 public class apiResource {
-
+    PersonFacade facade = new PersonFacade();
+    Gson gson = new Gson();
+    
     @Context
     private UriInfo context;
 
@@ -38,9 +43,9 @@ public class apiResource {
     @GET
     @Path("{id}")
     @Produces("application/json")
-    public String getPerson(@PathParam ("id") Integer id) {
+    public String getPerson(@PathParam ("id") Long perid) {
         //TODO return proper representation object
-        return "{'id':'1'}";
+        return  gson.toJson(facade.getPerson(perid), Person.class);
     }
 
     /**

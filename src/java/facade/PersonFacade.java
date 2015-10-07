@@ -63,7 +63,7 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person getPerson(int id) {
+    public Person getPerson(long id) {
         EntityManager em = emf.createEntityManager();
         try {
             Person p = em.find(Person.class, id);

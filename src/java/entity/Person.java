@@ -17,10 +17,7 @@ import javax.persistence.ManyToMany;
 public class Person extends InfoEntity implements Serializable
 {
 //    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+   
     private String firstName;
     private String lastName;
     
@@ -31,10 +28,10 @@ public class Person extends InfoEntity implements Serializable
     {
     }
 
-    public Person(Long id, String firstName, String lastName, String email, Address address)
+    public Person(Long ids, String firstName, String lastName, String email, Address address)
     {
         super(email, address);
-        this.id = id;
+        
         this.firstName = firstName;
         this.lastName = lastName;
     }

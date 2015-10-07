@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,18 +25,17 @@ public class Phone implements Serializable {
     private Long id;
     private int phoneNumber;
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private InfoEntity infoEntity;
 
     public Phone()
     {
     }
 
-    public Phone(int phoneNumber, String description, InfoEntity infoEntity)
+    public Phone(int phoneNumber, String description)
     {
         this.phoneNumber = phoneNumber;
         this.description = description;
-        this.infoEntity = infoEntity;
     }
 
     public Long getId()

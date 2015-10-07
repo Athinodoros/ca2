@@ -3,10 +3,8 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 /**
@@ -21,17 +19,16 @@ public class Person extends InfoEntity implements Serializable
     private String firstName;
     private String lastName;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Hobby> hobbies = new ArrayList();
 
     public Person()
     {
     }
 
-    public Person(Long ids, String firstName, String lastName, String email, Address address)
+    public Person(String firstName, String lastName, String email, Address address, List<Phone> phones)
     {
-        super(email, address);
-        
+        super(email, address, phones);
         this.firstName = firstName;
         this.lastName = lastName;
     }

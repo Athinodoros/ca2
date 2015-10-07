@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,9 +24,9 @@ public class Address implements Serializable
     private Long id;
     private String streetName;
     private String additionalInfo;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private CityInfo cityInfo;
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private List<InfoEntity> habitants = new ArrayList();
 
     public Address()

@@ -4,6 +4,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,17 +24,18 @@ public abstract class InfoEntity implements Serializable {
     private Long id;
 
     private String email;
-    @OneToMany(mappedBy = "infoEntity")
+    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public InfoEntity()
     {
     }
 
-    public InfoEntity(String email, Address address)
+    public InfoEntity(String email, Address address, List<Phone> phones)
     {
+        this.phones = phones;
         this.email = email;
         this.address = address;
     }

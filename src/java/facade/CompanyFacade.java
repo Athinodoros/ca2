@@ -1,6 +1,8 @@
 package facade;
 
 import entity.Company;
+import exception.CompanyNotFoundException;
+import exception.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,12 +41,14 @@ public class CompanyFacade implements CompanyInterface
     }
 
     @Override
-    public Company getCompany(int cvr)
+    public Company getCompany(int cvr) throws CompanyNotFoundException
     {
         EntityManager em = getEntityManager();
         try {
             Company c = em.find(Company.class, cvr);
-            //insert exception handling here
+            if (c == null) {
+                throw new CompanyNotFoundException("No company found with provided cvr");
+            }
             return c;
         } finally {
             em.close();
@@ -64,12 +68,14 @@ public class CompanyFacade implements CompanyInterface
     }
 
     @Override
-    public Company updateCompany(Company comp)
+    public Company updateCompany(Company comp) throws CompanyNotFoundException
     {
         EntityManager em = getEntityManager();
         try {
             Company updated = em.find(Company.class, comp.getId());
-            //insert exception handling here
+            if (updated == null) {
+                throw new CompanyNotFoundException("No company found with provided cvr");
+            }
             updated.setName(comp.getName());
             updated.setAddress(comp.getAddress());
             updated.setCvr(comp.getCvr());
@@ -88,12 +94,14 @@ public class CompanyFacade implements CompanyInterface
     }
 
     @Override
-    public Company deleteCompany(Company comp)
+    public Company deleteCompany(Company comp) throws CompanyNotFoundException
     {
         EntityManager em = getEntityManager();
         try {
             Company c = em.find(Company.class, comp.getId());
-            //insert exception handling here
+                if (c == null) {
+                throw new CompanyNotFoundException("No company found with provided cvr");
+            }
             em.getTransaction().begin();
             em.remove(c);
             em.getTransaction().commit();

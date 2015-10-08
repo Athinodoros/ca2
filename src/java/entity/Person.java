@@ -6,11 +6,21 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author favl
  */
+@NamedQueries({
+    @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+    @NamedQuery(name = "Person.findByFirstName", query = "SELECT p FROM Person p WHERE p.firstName = :firstName"),
+    @NamedQuery(name = "Person.findByLastName", query = "SELECT p FROM Person p WHERE p.lastName = :lastName"),
+    @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phones = :phones"),
+    @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email"),
+    @NamedQuery(name = "Person.findByHobby", query = "SELECT p FROM Person p WHERE p.hobbies = :hobbies")
+})
 @Entity
 public class Person extends InfoEntity implements Serializable
 {

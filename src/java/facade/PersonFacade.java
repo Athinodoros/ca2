@@ -1,11 +1,11 @@
 package facade;
 
+import entity.CityInfo;
 import entity.Person;
 import exception.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
  */
 public class PersonFacade implements PersonInterface {
 
+<<<<<<< Updated upstream
     EntityManagerFactory emf ;
 
     public PersonFacade(EntityManagerFactory emf) {
@@ -24,6 +25,30 @@ public class PersonFacade implements PersonInterface {
     @Override
     public Person createPerson(Person p) {
         EntityManager em = emf.createEntityManager();
+=======
+    private EntityManagerFactory emf;
+    
+    public PersonFacade(EntityManagerFactory e)
+    {
+        this.emf = e;
+    }
+    
+    public EntityManager getEntityManager()
+    {
+        return emf.createEntityManager();
+    }
+    
+    @Override
+    public CityInfo getCityInformation(int zipCode)
+    {
+        EntityManager em = getEntityManager();
+        return em.find(CityInfo.class, zipCode);
+    }
+    
+    @Override
+    public Person createPerson(Person p)    {
+        EntityManager em = getEntityManager();
+>>>>>>> Stashed changes
         try {
             em.getTransaction().begin();
             em.persist(p);
@@ -35,8 +60,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
+<<<<<<< Updated upstream
     public Person deletePerson(Person p) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
+=======
+    public Person deletePerson(Person p) {
+        EntityManager em = getEntityManager();
+>>>>>>> Stashed changes
         try {
             Person pers = em.find(Person.class, p.getId());
             if (pers == null) {
@@ -52,8 +82,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
+<<<<<<< Updated upstream
     public Person updatePerson(Person p) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
+=======
+    public Person updatePerson(Person p) {
+        EntityManager em = getEntityManager();
+>>>>>>> Stashed changes
         try {
             Person edited = em.find(Person.class, p.getId());
                 if(edited == null){
@@ -75,8 +110,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
+<<<<<<< Updated upstream
     public Person getPerson(long id) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
+=======
+    public Person getPerson(long id) {
+        EntityManager em = getEntityManager();
+>>>>>>> Stashed changes
         try {
             Person p = em.find(Person.class, id);
             if (p == null) {
@@ -90,7 +130,7 @@ public class PersonFacade implements PersonInterface {
 
     @Override
     public List<Person> getPersons() {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             return em.createQuery("select p from Person p").getResultList();
         } finally {

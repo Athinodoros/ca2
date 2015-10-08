@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(exception.CompanyNotFoundExceptionMapper.class);
         resources.add(exception.NotFoundExceptionMapper.class);
         resources.add(exception.PersonNotFoundExceptionMapper.class);
+        resources.add(rest.apiResource.class);
         resources.add(rest.apiResourceCompany.class);
         resources.add(rest.apiResourcePerson.class);
     }

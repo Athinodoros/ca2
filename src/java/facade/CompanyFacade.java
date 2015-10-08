@@ -1,5 +1,6 @@
 package facade;
 
+import entity.CityInfo;
 import entity.Company;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,6 +25,19 @@ public class CompanyFacade implements CompanyInterface
     }
     
     @Override
+    public CityInfo getCityInformation(int zipCode)
+    {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createNamedQuery("");
+            //insert exception handling here
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Override
     public Company createCompany(Company comp)
     {
         EntityManager em = getEntityManager();
@@ -42,14 +56,19 @@ public class CompanyFacade implements CompanyInterface
     {
         EntityManager em = getEntityManager();
         try {
-            Company c = em.find(Company.class, cvr);
+            Query query = em.createNamedQuery("Company.findByCvr");
+            query.setParameter("cvr", cvr);
             //insert exception handling here
-            return c;
+            return (Company) query.getSingleResult();
         } finally {
             em.close();
         }
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     @Override
     public Company updateCompany(Company comp)
     {

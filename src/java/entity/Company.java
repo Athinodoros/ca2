@@ -2,13 +2,20 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author favl
  */
-//@NamedQueries({
-//    @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM InfoEntity c WHERE c.cvr = :cvr")})
+@NamedQueries({
+    @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM Company c WHERE c.cvr = :cvr"),
+    @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name"),
+    @NamedQuery(name = "Company.findByMarketValue", query = "SELECT c FROM Company c WHERE c.marketValue = :marketValue"),
+    @NamedQuery(name = "Company.findByNumOfEmployees", query = "SELECT c FROM Company c WHERE c.numOfEmployees = :numOfEmployees"),
+    @NamedQuery(name = "Company.findByPhone", query = "SELECT c FROM Company c WHERE c.phones = :phones")
+})
 @Entity
 public class Company extends InfoEntity implements Serializable
 {

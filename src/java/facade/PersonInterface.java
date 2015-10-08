@@ -1,8 +1,8 @@
 
 package facade;
 
-import entity.Company;
 import entity.Person;
+import exception.PersonNotFoundException;
 import java.util.List;
 
 /**
@@ -12,9 +12,9 @@ import java.util.List;
 public interface PersonInterface {
     
     public Person createPerson(Person p);
-    public Person deletePerson(Person p);
-    public Person updatePerson(Person p);
-    public Person getPerson (long id);
+    public Person deletePerson(Person p)throws PersonNotFoundException;;
+    public Person updatePerson(Person p)throws PersonNotFoundException;;
+    public Person getPerson (long id)throws PersonNotFoundException;;
     public List<Person> getPersons ();
  
 }

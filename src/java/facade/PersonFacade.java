@@ -1,6 +1,7 @@
 package facade;
 
 import entity.Person;
+import exception.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,7 +22,7 @@ public class PersonFacade implements PersonInterface {
     
 
     @Override
-    public Person createPerson(Person p)    {
+    public Person createPerson(Person p) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -34,10 +35,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person deletePerson(Person p) {
+    public Person deletePerson(Person p) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
         try {
             Person pers = em.find(Person.class, p.getId());
+            if (pers == null) {
+                throw new PersonNotFoundException("No Person found with provided id");
+            }
             em.getTransaction().begin();
             em.remove(pers);
             em.getTransaction().commit();
@@ -48,17 +52,19 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person updatePerson(Person p) {
+    public Person updatePerson(Person p) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
         try {
             Person edited = em.find(Person.class, p.getId());
+                if(edited == null){
+                  throw new PersonNotFoundException("No Person found with provided id");
+                }
             edited.setFirstName(p.getFirstName());
             edited.setLastName(p.getLastName());
             edited.setAddress(p.getAddress());
             edited.setEmail(p.getEmail());
             edited.setHobbies(p.getHobbies());
             edited.setPhones(p.getPhones());
-
             em.getTransaction().begin();
             em.merge(edited);
             em.getTransaction().commit();
@@ -69,10 +75,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person getPerson(long id) {
+    public Person getPerson(long id) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
         try {
             Person p = em.find(Person.class, id);
+            if (p == null) {
+                throw new PersonNotFoundException("No Person found with provided id");
+            }
             return p;
         } finally {
             em.close();

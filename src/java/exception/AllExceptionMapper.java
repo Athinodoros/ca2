@@ -1,4 +1,3 @@
-
 package exception;
 
 import com.google.gson.Gson;
@@ -15,22 +14,22 @@ import javax.ws.rs.ext.Provider;
  * @author Rihards
  */
 @Provider
-public class PersonNotFoundExceptionMapper implements ExceptionMapper<PersonNotFoundException>{
+public class AllExceptionMapper implements ExceptionMapper<Throwable> {
 
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    
+
     @Context
     ServletContext context;
-    
+
     @Override
-    public Response toResponse(PersonNotFoundException e) {
+    public Response toResponse(Throwable e) {
         boolean isDebug = context.getInitParameter("debug").equals("true");
-        ErrorMessage err = new ErrorMessage(e, 404, isDebug);
-        return Response.status(Response.Status.NOT_FOUND)
+        ErrorMessage err = new ErrorMessage(e, 500, isDebug);
+        err.setMessage("Internal server Error, we are sorry, something went wrong");
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(gson.toJson(err))
                 .type(MediaType.APPLICATION_JSON).build();
+
     }
 
-
 }
-    
